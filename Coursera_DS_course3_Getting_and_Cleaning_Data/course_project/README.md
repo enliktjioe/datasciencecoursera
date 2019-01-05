@@ -19,7 +19,7 @@ This repository contains the following files:
 
 
 ## How to create a tidy data set
-R script `run_analysis.R` can be used to create the data set. It retrieves the source data set and transforms it to produce the final data set by implementing the following steps (see the Code book for details, as well as the comments in the script itself):
+R script `run_analysis.R` can be used to create the data set. It retrieves the source data set and transforms it to produce the final data set by implementing the following steps (see the Code_Book.md for details, as well as the comments in the script itself):
 
 - Download data from [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 - Extract .zip file and put on same directory with `run_analysis.R`
