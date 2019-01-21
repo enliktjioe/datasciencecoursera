@@ -3,6 +3,7 @@ setwd("/Users/enlik/GitRepo/datasciencecoursera/DS_Course4_ExploratoryDataAnalys
 
 ## Load required R Library
 library(dplyr)
+library(ggplot2)
 
 ## Read required datasets
 NEI <- readRDS("exdata_data_NEI_data/summarySCC_PM25.rds")
@@ -46,4 +47,20 @@ text(x = plot2, y = round(q2$Emissions/1000, 2),
 
 
 # Question 3
-##
+## Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, 
+## which of these four sources have seen decreases in emissions from 1999-2008 for Baltimore City? 
+## Which have seen increases in emissions from 1999-2008? 
+## Use the ggplot2 plotting system to make a plot answer this question.
+q3 <- summarise(group_by(filter(NEI, fips == "24510"), year,type), Emissions=sum(Emissions))
+
+ggplot(q3, aes(x = factor(year), y = q3$Emissions, fill = type, label = round(Emissions,2))) +
+  geom_bar(stat="identity") +
+  facet_grid(. ~ type) +
+  xlab("year") +
+  ylab(expression("total PM"[2.5]*" emission in tons")) +
+  ggtitle(expression("PM"[2.5]*paste(" emissions in Baltimore ",
+                                     "City by various source types", sep="")))+
+  geom_label(aes(fill = type), colour = "white", fontface = "bold")
+
+
+
