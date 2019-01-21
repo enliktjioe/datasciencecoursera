@@ -57,6 +57,7 @@ text(x = plot2, y = round(q2$Emissions/1000, 2),
 require(dplyr)
 q3 <- summarise(group_by(filter(NEI, fips == "24510"), year,type), Emissions=sum(Emissions))
 
+require(ggplot2)
 ggplot(q3, aes(x = factor(year), y = q3$Emissions, fill = type, label = round(Emissions,2))) +
   geom_bar(stat="identity") +
   facet_grid(. ~ type) +
