@@ -1,0 +1,26 @@
+---
+title: "Enlik Tjioe - Data Science - Regression Models - Quiz 1 - Coursera"
+author: "Enlik Tjioe"
+date: "23 January 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Quiz 1
+This is Quiz 1 from Coursera’s Regression Models class within the Data Science Specialization. This publication is intended as a learning resource, all answers are documented and explained. Datasets are available in R packages.
+
+## 1.
+Consider the data set given below
+`x <- c(0.18, -1.54, 0.42, 0.95)`
+
+And weights given by
+`w <- c(2, 1, 3, 1)`
+
+Give the value of μ that minimizes the least squares equation
+∑ni=1wi(xi−μ)2
+
+## Explanation
+Least squares is minimized by the mean
