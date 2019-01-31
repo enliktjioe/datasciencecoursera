@@ -13,3 +13,5 @@ DS_Course4_ExploratoryDataAnalysis/week4/exdata_data_NEI_data/summarySCC_PM25.rd
 .~lock.activity.csv#
 05_ReproducibleResearch/data_input
 05_ReproducibleResearch/course_project_1/RepData_PeerAssessment1/data_input
+repdata_data_StormData.csv
+stormDT.csv.bz2
