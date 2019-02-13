@@ -1,0 +1,14 @@
+---
+title: "Coursera - Statistical Reference"
+author: "Enlik"
+date: "10 February 2019"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r}
+options(tinytex.verbose = TRUE)
+```
+
+Test
