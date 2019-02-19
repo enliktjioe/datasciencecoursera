@@ -1,0 +1,24 @@
+---
+title: "Statistical Inference Course Project"
+author: "Enlik"
+date: "20 February 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+The project consists of two parts:
+1. A simulation exercise.
+2. Basic inferential data analysis.
+    
+## 1. Simulation Exercise
+```{r}
+
+```
+
+
+
+

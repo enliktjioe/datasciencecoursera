@@ -93,3 +93,52 @@ modFit <- train(eruptions ~ waiting, data = trainFaith,
                 method = "lm")
 summary(modFit$finalModel)
 
+############################################################
+##                                                        ##
+############################################################
+
+# Predicting with Regression Multiple Covariates
+# Example: Wage Data
+library(ISLR)
+library(ggplot2)
+library(caret)
+data(Wage)
+
+Wage <- subset(Wage, select = -c(logwage))
+summary(Wage)
+
+# Get training/test sets
+inTrain <- createDataPartition(y = Wage$wage,
+                               p = 0.7, list = F)
+training <- Wage[inTrain,]
+testing <- Wage[-inTrain,]
+dim(training)
+dim(testing)
+
+
+# Feature plot
+featurePlot(x = training[,c("age", "education","jobclass")],
+            y = training$wage,
+            plot = "pairs")
+
+
+# QUIZ 2
+library(AppliedPredictiveModeling)
+data(AlzheimerDisease)
+
+adData = data.frame(diagnosis,predictors)
+trainIndex = createDataPartition(diagnosis,p=0.5,list=FALSE)
+training = adData[-trainIndex,]
+testing = adData[-trainIndex,]
+summary(training)
+summary(testing)
+
+
+# 2
+library(AppliedPredictiveModeling)
+data(concrete)
+library(caret)
+set.seed(1000)
+inTrain = createDataPartition(mixtures$CompressiveStrength, p = 3/4)[[1]]
+training = mixtures[ inTrain,]
+testing = mixtures[-inTrain,]
