@@ -1,0 +1,106 @@
+---
+title: "Coursera - Regression Models"
+author: "Enlik"
+date: "19 February 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Summary
+This analysis using dataset comes from `mtcars` package. The data was extracted from the 1974 Motor Trend US magazine and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The main purpose of this analysis is to answer the following two questions:
+
+1. Is an automatic or manual transmission better for MPG
+2. Quantify the MPG difference between automatic and manual transmissions
+
+
+Based on the data, this document shows that the manual transmission is better than the automatic for the mpg: all the models tested say this.
+
+The best model says that the manual transmission allows doing an average of 2.396 miles plus then the automatic.
+    
+
+# Read Data
+```{r}
+data(mtcars)
+mtcars$vs <- as.factor(mtcars$vs)
+mtcars$am <- as.factor(mtcars$am)
+
+str(mtcars)
+summary(mtcars)
+```
+mtcars dataset have 32 observations and 11 variables:
+
+1. mpg: Miles/(US) gallon
+2. cyl: Number of cylinders
+3. disp: Displacement (cu.in.)
+4. hp: Gross horsepower
+5. drat: Rear axle ratio
+6. wt: Weight (1000 lbs)
+7. qsec: 1/4 mile time
+8. vs: V/S
+9. am: Transmission (0 = automatic, 1 = manual)
+10. gear: Number of forward gears
+11. carb: Number of carburetors
+
+
+```{r}
+boxplot(mpg ~ am, data = mtcars,
+         col  = c("green", "yellow"),
+         xlab = "Transmission",
+         ylab = "Miles per Gallon (MPG)",
+         main = "MPG by Transmission Type",
+         names= c("automatic","manual"),
+         horizontal= T) 
+```
+
+From boxplot graph above, it seems manual transmission was better than automatic.
+
+
+```{r}
+auto=subset(mtcars,select=mpg,am==0)
+manual=subset(mtcars,select=mpg,am==1)
+t.test(auto,manual)
+```
+
+# Simple Linear Regression
+```{r}
+regSIM <- lm(mpg~am,mtcars) 
+summary(regSIM) 
+```
+R-square = 0.36 means the model have 36% of the variance.
+
+# Multivariate Regression
+```{r}
+regTOT <- lm(mpg~.,mtcars)
+summary(regTOT)
+```
+
+I use the stepwise regression method for choice the best variables for explain the mpg values.
+```{r}
+regSR=step(regTOT,trace=0)
+summary(regSR)
+```
+It explains more about mpg values that are wt, qsec and am.
+This model has 84.97% of the variance and has all the coefficients significative at 5%, so this model is better than the other two.
+For this model the manual transmission allow to do 2.396 miles plus then the automatic.
+
+```{r}
+anova(regSIM,regSR,regTOT)
+```
+
+Anova confirm that the model with 3 predictor (wt, qsec, am), is the best choice.
+
+# Residuals
+Residual plot of the best model:
+```{r}
+plot(regSR, which=c(1:1))
+```
+
+# Conclusion
+Based on the data, this document shows that the manual transmission is better than the automatic for the mpg: all the models tested say this.
+
+The best model says that the manual transmission allows doing an average of 2.396 miles plus then the automatic.
